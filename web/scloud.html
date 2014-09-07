@@ -5,20 +5,86 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Scloud</title>
-    
+
     <script async type="application/dart" src="scloud.dart"></script>
     <script async src="packages/browser/dart.js"></script>
-    
-    <link rel="stylesheet" href="scloud.css">
+
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1>Scloud</h1>
-    
-    <p>Hello world from Dart!</p>
-    
-    <div id="sample_container_id">
-      <p id="sample_text_id">Click me!</p>
+
+  <div id="playerInfo">
+    <div class="part1">
+      <h3>Artiste</h3>
+      <h2 id="playerTitle">Player</h2>
     </div>
+
+  </div>
+
+  <div style="display:none;">
+    <span >Next Track: </span><span id="nextTrack"></span>
+  </div>
+  <div id=playerBoard>
+    <div id="playerState">
+      
+      <div class="progress">
+      <progress id="PlayerProgress" style=" display:none; width:100%" value="0" max="100"></progress>
+      <progress id="PlayerLoaded" style="display:none; width:100%" value="0" max="100"></progress>
+      </div>
+       <div class=playerBar>
+       <span class="barLoad"></span>
+       <span class="barProgress"></span>
+       <span class="barSeek"></span>
+       </div>
+      
+      <p id="duration"> <span id=playerCurrentime>00</span> / <span id=playerDuration>00</span></p>
+    </div>
+
+    <div id="playerControl">
+    <button id="playerReload">reload</button>
+      <button id="playerLoad" style="display:none;">LoadSong</button>
+      <button id="playerPrevious">Previous</button>
+      <button id="playerPlay">Pause</button>
+      <button id="playerNext">Next</button>
+    </div>
+    <audio id="PlayerInstance"></audio>
+  </div>
+
+  <input type="file" id="files" name="files" multiple style="display:none;"/>
+
+  <div id="playerInteraction" >
+      <h1 class="active">SearchList</h1>
+        <div id="SearchListTab"  class="panel">
+             <div class="content">
+             <div id="searchbar"><input type="text" value="pompis" id="searchSong" /><button id="searchSongSubmit">Rechercher</button></div>
+            <div id="searchList"></div>         
+             <div>Clear</div>
+             
+            </div>
+        </div>
+      
+      <div id="nextTrackList" style="display:none;">
+       <a class="tab-link" href="#one">NextTrackList</a>
+      <ul id="nextTrackListULement">
+      <div>Clear</div>
+      </ul>
+      </div>
+      
+   <h1>Playlist</h1>
+      <div id="PlayListTab" class="panel">
+         <div class="content">
+          <div id="playlist">
+           <button id="ClearPlayList" >Clear</button>
+            <ul id="playlistULement">
+             <div>Clear</div>
+            </ul>
+         </div>
+         <div>
+      </div>
+
+   </div>
+  </div>
+</div>
 
   </body>
 </html>
