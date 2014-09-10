@@ -53,16 +53,14 @@ var  _startTime = 0;
   }
     
   void createMedia(AnchorElement track){
-  
+       
      //var url = 'https://api.soundcloud.com/tracks/72196515/stream?client_id=b1bc52c55d66bd7de66ba86a34d434fe';
     var titre = track.title;  
     var href = track.href;
     String urlRequest = "${track.href}?client_id=b1bc52c55d66bd7de66ba86a34d434fe";
-    window.console.log(urlRequest);
-    
     mediaElement.src= urlRequest;
-    mediaElement.title = track.title;
-    //mediaElement.controls = true;
+    mediaElement.title = track.title;  
+    mediaElement.dataset = {"artist":"${track.dataset["artist"]}"};
     mediaElement.id = "Song${track.id}";
     
   }

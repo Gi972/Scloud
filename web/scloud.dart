@@ -4,8 +4,7 @@ import 'libs/Controller.dart';
 
 Controller control;
 void main() {
-     
- // nextTrack = querySelector("#nextTrack");      
+          
  control = new Controller();
  
     control.nextTrack = querySelector("#nextTrack");
@@ -16,6 +15,7 @@ void main() {
     control.playerFiles = querySelector("#files");
     control.playerPlaylist = querySelector("#playlist");
     control.playerTitle = querySelector("#playerTitle");
+    control.playerArtist = querySelector("#playerArtist");
     control.searchSongSubmit = querySelector("#searchSongSubmit");
     control.searchSong = querySelector("#searchSong");
     control.PlayerProgress = querySelector("#PlayerProgress");
@@ -31,6 +31,7 @@ void main() {
     control.barLoad = querySelector(".barLoad");
     control.barProgress = querySelector(".barProgress");
     control.barSeek = querySelector(".barSeek");
+    
  
   control.init();
  

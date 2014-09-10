@@ -74,11 +74,12 @@ class BuilderView
         ..id = "IDTRACK_${track.id}"
         ..href = track.stream
         ..title = track.title
+        ..dataset = {"artist":"${track.username}"} 
         ..onClick.listen(_buildSearchListItem_onClick)    
       ));
            
       properties.children.add(_buildMiniControlPlayer(track.id));
-      properties.onClick.listen((e)=>_BuildSearchListItemMiniControlplayer_onClick(e, properties));  
+     // properties.onClick.listen((e)=>_BuildSearchListItemMiniControlplayer_onClick(e, properties));  
       return properties;
     }
 
@@ -119,21 +120,25 @@ class BuilderView
   }
   
   void _BuildSearchListItemMiniControlplayer_onClick(Event e, SpanElement properties){
-    _controller.miniControlPlay = querySelector("#miniControlPlayer #play");
+    //_controller.miniControlPlay = querySelector("#miniControlPlayer #play");
     
     print(_controller.miniControlPlay);
     
     if(_controller.miniControlPlay != null){
        _controller.miniControlPlay.remove();
     }
+    
     properties.parent.className="active"; 
     
     window.console.log(properties);
     
-    (properties.children[2] as SpanElement).append(new ButtonElement()
-        ..id = 'play'
-        ..text = 'play'
-        ..onClick.listen(_miniplayer_onClick));         
+    _controller.miniControlPlay = new ButtonElement(); 
+  
+    (properties.children[2] as SpanElement).append( _controller.miniControlPlay
+         ..id = 'play'
+         ..text = 'play'
+         ..onClick.listen(_miniplayer_onClick));    
+    
   }
    
   void _addPlaylist_onClick(Event e){  
@@ -156,13 +161,23 @@ class BuilderView
   
   SpanElement _buildMiniControlPlayer(String id){
     SpanElement miniplayer = new SpanElement();
+ 
+    _controller.miniControlPlay = new ButtonElement();
+  
     miniplayer.id = "miniControlPlayer";         
     miniplayer.children.add(
                  new ButtonElement()
                ..text = "Add"
                ..id = id.toString()
                ..onClick.listen(_addPlaylist_onClick)
-               );           
+               );
+    miniplayer.children.add(
+                    _controller.miniControlPlay
+                   ..text = "play"
+                   ..id = "Play_$id"
+                   ..onClick.listen(_miniplayer_onClick)
+                   );
+    
     return miniplayer;
   }
   
@@ -182,10 +197,16 @@ class BuilderView
   
   void _miniplayer_onClick(Event e){
    
-    window.console.log((e.currentTarget as ButtonElement).parentNode.parentNode.childNodes[1]);
-    AnchorElement element = (e.currentTarget as ButtonElement).parentNode.parentNode.childNodes[1].childNodes[1];
-    _controller.loadFile(element);
-    _controller.play();
+    //window.console.log((e.currentTarget));
+   
+   
+  //  AnchorElement element = (e.currentTarget as ButtonElement).parentNode.parentNode.childNodes[1].childNodes[1];
+   // _controller.loadFile(element);
+    
+    print('call miniplay');
+    _controller.miniControlPlay = (e.currentTarget as ButtonElement);
+    _controller.play();  
+    
   }
  
 }
