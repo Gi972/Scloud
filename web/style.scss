@@ -31,6 +31,14 @@ ol,ul {
   justify-content: center;
 }
 
+#playerInfo{
+  display: flex;  
+  #playerArtist{ flex-grow:1;}
+  #playerTitle{flex-grow:1;}
+  #duration{flex-grow:1;}
+}
+
+
 #duration{
   text-align: right;
   padding-right: 10px;
@@ -128,12 +136,14 @@ h1.active + .panel {
   }
 }
 
+
 #searchList{
   li{
   
   .searchListItem{
   
   position:relative;
+  z-index:3;
   
   border:solid 1px #eee;
   height: 60px;
@@ -147,7 +157,15 @@ h1.active + .panel {
   padding-bottom:5px;
   box-shadow: 1px 1px #CAC0C0;
   background:#eee;
-  //background:linear-gradient(90deg, #1A2980 10%, #26D0CE 90%); 
+  //background:linear-gradient(90deg, #1A2980 10%, #26D0CE 90%);
+  
+  &:hover{
+  background:#B3DB13;
+  } 
+  
+  &.js-trackPlaying{
+  background: #9CBCEC;
+  }
   
   img{
     padding-left:5px;

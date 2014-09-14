@@ -10,23 +10,24 @@
     <script async src="packages/browser/dart.js"></script>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Content/icomoon/style.css"> 
   </head>
   <body>
 
-  <div id="playerInfo">
-    <div class="part1">
-      <h3 id="playerArtist">Artiste</h3>
-      <h2 id="playerTitle">Player</h2>
-    </div>
-
-  </div>
+  
 
   <div style="display:none;">
     <span >Next Track: </span><span id="nextTrack"></span>
   </div>
+  
+   <div id="playerInfo">
+      <h3 id="playerArtist">Artiste</h3>
+      <h2 id="playerTitle">Player</h2>
+      <p id="duration"> <span id=playerCurrentime>00</span> / <span id=playerDuration>00</span></p>
+  </div>
+  
   <div id=playerBoard>
     <div id="playerState">
-      
       <div class="progress">
       <progress id="PlayerProgress" style=" display:none; width:100%" value="0" max="100"></progress>
       <progress id="PlayerLoaded" style="display:none; width:100%" value="0" max="100"></progress>
@@ -35,17 +36,15 @@
        <span class="barLoad"></span>
        <span class="barProgress"></span>
        <span class="barSeek"></span>
-       </div>
-      
-      <p id="duration"> <span id=playerCurrentime>00</span> / <span id=playerDuration>00</span></p>
+       </div>     
     </div>
-
+   
     <div id="playerControl">
-    <button id="playerReload">reload</button>
+    <button id="playerReload" style="display:none;>reload</button>
       <button id="playerLoad" style="display:none;">LoadSong</button>
-      <button id="playerPrevious">Previous</button>
+      <button id="playerPrevious"style="display:none;">Previous</button>
       <button id="playerPlay">Pause</button>
-      <button id="playerNext">Next</button>
+      <button id="playerNext" style="display:none;">Next</button>
     </div>
     <audio id="PlayerInstance"></audio>
   </div>

@@ -27,6 +27,19 @@ ol, ul {
   justify-content: center;
 }
 
+#playerInfo {
+  display: flex;
+}
+#playerInfo #playerArtist {
+  flex-grow: 1;
+}
+#playerInfo #playerTitle {
+  flex-grow: 1;
+}
+#playerInfo #duration {
+  flex-grow: 1;
+}
+
 #duration {
   text-align: right;
   padding-right: 10px;
@@ -111,6 +124,7 @@ ol, ul {
 
 #searchList li .searchListItem {
   position: relative;
+  z-index: 3;
   border: solid 1px #eee;
   height: 60px;
   display: flex;
@@ -122,6 +136,12 @@ ol, ul {
   padding-bottom: 5px;
   box-shadow: 1px 1px #CAC0C0;
   background: #eee;
+}
+#searchList li .searchListItem:hover {
+  background: #B3DB13;
+}
+#searchList li .searchListItem.js-trackPlaying {
+  background: #9CBCEC;
 }
 #searchList li .searchListItem img {
   padding-left: 5px;

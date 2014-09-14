@@ -41,8 +41,7 @@ class BuilderView
             t.duration = tr['duration'];
             t.stream = tr['stream_url'].toString();
             t.id = tr['id'].toString();
-            t.avatar_url = tr['user']['avatar_url'];
-                   
+            t.avatar_url = tr['user']['avatar_url'];                   
             var item = new Element.tag('li');  
             item.nodes.add(_BuildSearchListItem(t));
             list.nodes.add(item);
@@ -54,13 +53,11 @@ class BuilderView
     
     SpanElement _BuildSearchListItem(track track) {
       SpanElement properties = new SpanElement();
-      properties.className ="searchListItem";
-      
+      properties.className ="searchListItem";  
       properties.children.add(new ImageElement()
           ..alt ="titre"
           ..src = track.avatar_url
-      );
-      
+      );      
       properties.children.add(
       new DivElement()
         ..className = "trackAttribute"
@@ -74,12 +71,10 @@ class BuilderView
         ..id = "IDTRACK_${track.id}"
         ..href = track.stream
         ..title = track.title
-        ..dataset = {"artist":"${track.username}"} 
-        ..onClick.listen(_buildSearchListItem_onClick)    
-      ));
-           
-      properties.children.add(_buildMiniControlPlayer(track.id));
-     // properties.onClick.listen((e)=>_BuildSearchListItemMiniControlplayer_onClick(e, properties));  
+        ..dataset = {"artist":"${track.username}"}   
+      ));          
+      properties.children.add(_buildMiniControlPlayer(track.id));  
+      properties.onClick.listen(_buildSearchListItem_onClick);
       return properties;
     }
 
@@ -111,16 +106,19 @@ class BuilderView
   }  
   
  void _buildSearchListItem_onClick(Event e){
-   e.preventDefault(); 
-    AnchorElement element = (e.currentTarget as AnchorElement);
-    _controller.loadFile(element);
+    e.preventDefault(); 
+    SpanElement element = (e.currentTarget as SpanElement);
+    AnchorElement currentTrack = (e.currentTarget as SpanElement).childNodes[1].childNodes[1];    
    
+    if(_controller.player.mediaElement.paused){
+    _controller.loadFile(currentTrack);
+        print("load");
+    }
     //todo activate the nextrack list 
     // _controller.buildNexTrackList(e);
   }
   
   void _BuildSearchListItemMiniControlplayer_onClick(Event e, SpanElement properties){
-    //_controller.miniControlPlay = querySelector("#miniControlPlayer #play");
     
     print(_controller.miniControlPlay);
     
@@ -128,17 +126,7 @@ class BuilderView
        _controller.miniControlPlay.remove();
     }
     
-    properties.parent.className="active"; 
-    
-    window.console.log(properties);
-    
-    _controller.miniControlPlay = new ButtonElement(); 
-  
-    (properties.children[2] as SpanElement).append( _controller.miniControlPlay
-         ..id = 'play'
-         ..text = 'play'
-         ..onClick.listen(_miniplayer_onClick));    
-    
+    properties.parent.className="active";    
   }
    
   void _addPlaylist_onClick(Event e){  
@@ -172,51 +160,53 @@ class BuilderView
                ..onClick.listen(_addPlaylist_onClick)
                );
     miniplayer.children.add(
-                    _controller.miniControlPlay
-                   ..text = "play"
-                   ..id = "Play_$id"
-                   ..onClick.listen(_miniplayer_onClick)
-                   );
+                _controller.miniControlPlay
+                 ..text = "pause"
+                 ..id = "Play_$id"
+                 ..onClick.listen(_miniplayer_onClick)
+                 );
     
     return miniplayer;
   }
   
-  void _playListRemoveItem_onClick(Event e){
-   
+  void _playListRemoveItem_onClick(Event e){ 
      ButtonElement currentButton = e.currentTarget as ButtonElement;
      (e.currentTarget as ButtonElement).parentNode.parentNode.remove();
-     
-     
-     window.console.log(currentButton.id);
-     
-     
-     var playlistId= querySelector('#searchList a#${currentButton.id}');
-     window.console.log(playlistId.parentNode.childNodes[2]);
+     var playlistId= querySelector('#searchList a#${currentButton.id}');    
      (playlistId.parentNode.childNodes[2] as ButtonElement).disabled = false;
     }
   
   void _miniplayer_onClick(Event e){
-   
-    //window.console.log((e.currentTarget));
-   
-   
-  //  AnchorElement element = (e.currentTarget as ButtonElement).parentNode.parentNode.childNodes[1].childNodes[1];
-   // _controller.loadFile(element);
     
-    print('call miniplay');
-    _controller.miniControlPlay = (e.currentTarget as ButtonElement);
-    _controller.play();  
+    String currentIdButton = (e.currentTarget as ButtonElement).id;
+    String currentIdAnchor = _controller.player.mediaElement.id;  
+    String test1 = currentIdButton.substring(5);
+    String test2 = currentIdAnchor.isEmpty ? "" : currentIdAnchor.substring(12);
     
+    if( test1 == test2){
+      _controller.miniControlPlay = (e.currentTarget as ButtonElement);
+      ((e.currentTarget as ButtonElement).parentNode.parentNode as SpanElement).classes.add("js-trackPlaying");
+      _controller.play();    
+    }
+    else{
+      AnchorElement currentElement = (e.currentTarget  as ButtonElement).parentNode.parentNode.childNodes[1].childNodes[1];
+     
+   SpanElement previousElement =  querySelector(".js-trackPlaying");
+   if(previousElement != null) {previousElement.classes.remove("js-trackPlaying");}
+     
+   window.console.log(previousElement);
+   
+      _controller.miniControlPlay.text = "pause";
+      _controller.loadFile(currentElement);
+      ((e.currentTarget as ButtonElement).parentNode.parentNode as SpanElement).classes.add("js-trackPlaying");
+      _controller.play();    
+    }   
+    e.stopPropagation();
   }
  
 }
 
-
-
-
-
 class track{
-  
   String id;
   String title;
   String username;
@@ -224,5 +214,4 @@ class track{
   String totalTime;
   String stream;
   int duration;
-  
 }

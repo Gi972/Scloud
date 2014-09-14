@@ -47,16 +47,18 @@ BuilderView builderView;
    soundcloudAPI =  new SoundCloud();
    builderView =  new BuilderView(this);
    nextTrack.text = "no Next Track";  
+   
+   var d = window.console ;
+   
   }
   
   void loadFile(AnchorElement element){
          
     AnchorElement trackLink = element;
     var subId = element.id.substring(8);
-    miniControlPlay = querySelector("#miniControlPlayer  #Play_$subId"); 
-    
+   miniControlPlay = querySelector("#miniControlPlayer  #Play_$subId"); 
+        
    if(player.mediaElement.title== ''){
-      print('first time');
       player.load(trackLink);
    }
     else{    
@@ -72,24 +74,24 @@ BuilderView builderView;
     builderView.buildNexTrackList(trackLink, this); 
   }
    
-  void play(){        
+  void play(){       
                           if(player != null){
                            
                             String trackId= player.mediaElement.id;
-                                                                                             
-                                         if(player.mediaElement.paused){
+                                                                                                                       
+                                         if(player.mediaElement.paused){          
                                            player.play();
                                            playerTitle.text = player.mediaElement.title;
-                                           window.console.log(player.mediaElement.dataset['artist']);
-                                           
                                            playerArtist.text = player.mediaElement.dataset["artist"];
                                            playerPlay.text= "play";                                       
-                                           miniControlPlay.text = "play";                                          
+                                           miniControlPlay.text = "play";     
+                                           //print("playsong");
                                          }
                                          else{
                                            player.pause();
                                            playerPlay.text= "pause";                                                                                                         
                                            miniControlPlay.text = "pause";
+                                          // print("pausesong");
                                          }
                                  
                               player.mediaElement.onProgress.listen(_mediaElement_onProgress);

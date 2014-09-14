@@ -20,29 +20,26 @@ var  _startTime = 0;
   }
   
   void load(AnchorElement track){
-   window.console.log('load');
-   window.console.log(mediaElement);
    
       createMedia(track);
-      
       if(_source == null){
-         _source = audiocontext.createMediaElementSource(mediaElement);
+        _source = audiocontext.createMediaElementSource(mediaElement);
          _source.connectNode(audiocontext.destination);
        }     
       
   }
   
-  void play(){ 
-    if (mediaElement.paused == true){     
-        mediaElement.play();    
-        window.console.log('song start'); 
+  void play(){  
+    if (mediaElement.paused == true){       
+      mediaElement.play();    
+      print('media play');
     }    
   }
   
   void pause(){
     if (mediaElement.paused == false){
     mediaElement.pause();
-    window.console.log('song stop');
+   
     }
   }
     
@@ -61,8 +58,7 @@ var  _startTime = 0;
     mediaElement.src= urlRequest;
     mediaElement.title = track.title;  
     mediaElement.dataset = {"artist":"${track.dataset["artist"]}"};
-    mediaElement.id = "Song${track.id}";
-    
+    mediaElement.id = "Song${track.id}";   
   }
     
   void previous(){}
