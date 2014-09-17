@@ -75,7 +75,8 @@ BuilderView builderView;
   }
    
   void play(){       
-                          if(player != null){
+   
+                          if(player.mediaElement != null){
                            
                             String trackId= player.mediaElement.id;
                                                                                                                        
@@ -83,15 +84,25 @@ BuilderView builderView;
                                            player.play();
                                            playerTitle.text = player.mediaElement.title;
                                            playerArtist.text = player.mediaElement.dataset["artist"];
-                                           playerPlay.text= "play";                                       
-                                           miniControlPlay.text = "play";     
-                                           //print("playsong");
+                                           
+                                           playerPlay.classes.add("icon-pause");
+                                           playerPlay.classes.remove("icon-play");
+                                           miniControlPlay.classes.add("icon-pause2");
+                                           miniControlPlay.classes.remove("icon-play2");
+                                          
+                                           
                                          }
                                          else{
                                            player.pause();
-                                           playerPlay.text= "pause";                                                                                                         
-                                           miniControlPlay.text = "pause";
-                                          // print("pausesong");
+                                           window.console.log(miniControlPlay.classes);
+                                           
+                                           playerPlay.classes.add("icon-play");
+                                           playerPlay.classes.remove("icon-pause");                                
+                                           miniControlPlay.classes.add("icon-play2");
+                                           miniControlPlay.classes.remove("icon-pause2");
+                                         
+                                          
+
                                          }
                                  
                               player.mediaElement.onProgress.listen(_mediaElement_onProgress);

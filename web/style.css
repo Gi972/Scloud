@@ -21,10 +21,36 @@ ol, ul {
   padding-left: 10px;
 }
 
+#playerBoard {
+  background: linear-gradient(90deg, black -25%, #e74c3c 90%);
+  /* W3C */
+}
+
 #playerControl {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+#playerControl button {
+  border: none;
+  background: none;
+  margin-top: 10px;
+}
+#playerControl button.icon-play, #playerControl button.icon-pause, #playerControl button.icon-backward, #playerControl button.icon-forward {
+  padding-left: 1;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+  color: #FFFFFF;
+}
+#playerControl button.icon-play, #playerControl button.icon-pause {
+  font-size: 2.5rem;
+}
+#playerControl button.icon-backward, #playerControl button.icon-forward {
+  font-size: 1.5rem;
+}
+#playerControl button:focus {
+  outline: none;
 }
 
 #playerInfo {
@@ -32,12 +58,19 @@ ol, ul {
 }
 #playerInfo #playerArtist {
   flex-grow: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 #playerInfo #playerTitle {
-  flex-grow: 1;
+  flex-grow: 2;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 #playerInfo #duration {
-  flex-grow: 1;
+  width: 120px;
+  white-space: nowrap;
 }
 
 #duration {
@@ -47,9 +80,9 @@ ol, ul {
 
 .playerBar {
   position: relative;
-  height: 30px;
+  height: 6px;
   width: 100%;
-  background-color: #eee;
+  background-color: #DDDDDD;
 }
 .playerBar .barLoad {
   position: absolute;
@@ -76,10 +109,10 @@ ol, ul {
 }
 
 #playerInteraction {
-  margin-top: 15px;
   padding-top: 15px;
-  border-top: solid 1px #eee;
   position: relative;
+  background: #DDDDDD;
+  border-bottom: 1px solid;
 }
 #playerInteraction .panel {
   position: absolute;
@@ -88,25 +121,40 @@ ol, ul {
   width: 100%;
   margin-top: -6px;
   padding-top: 28px;
-  border-top: 1px solid #E9EBED;
+}
+#playerInteraction .panel #infoPlayer {
+  border-top: 1px solid #DFDFDF;
+  margin-top: 1px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  height: 115px;
+  text-align: center;
+  line-height: 100px;
+  background: #EEEEEE;
 }
 #playerInteraction h1 {
   display: inline-block;
-  margin: 0 1px;
-  padding: 8px 12px;
-  border: 1px solid #E9EBED;
+  margin: 0 -2px;
+  padding: 8px 20px;
+  padding-bottom: 11px;
+  border-left: 1px solid #111111;
+  border-right: 1px solid #111111;
   border-bottom: none;
-  border-radius: 5px 5px 0 0;
-  background: #FAFAFB;
+  border-radius: 1px 1px 0 0;
   font-weight: 500;
   font-size: 13px;
-  color: #1394BF;
+  color: #FF4136;
   cursor: pointer;
+  color: #FFFFFF;
 }
 #playerInteraction h1.active {
   position: relative;
   z-index: 1;
   background: #fff;
+  color: #111111;
+  border: 1px solid #FFFFFF;
+  margin-bottom: -1px;
 }
 #playerInteraction h1.active + .panel {
   display: block;
@@ -114,34 +162,64 @@ ol, ul {
 
 #searchbar {
   display: flex;
+  height: 30px;
 }
 #searchbar #searchSong {
   flex-grow: 9;
+  border: none;
+  background: #eee;
+  border-bottom: 1px solid linear-gradient(90deg, black -25%, #e74c3c 95%);
+}
+#searchbar #searchSong:focus {
+  outline: none;
 }
 #searchbar #searchSongSubmit {
   flex-grow: 1;
+  background: linear-gradient(90deg, black -25%, #e74c3c 95%);
+  color: white;
+  border: none;
+  border-radius: 2px;
+}
+#searchbar #searchSongSubmit:focus {
+  outline: none;
 }
 
+#searchList {
+  padding-top: 1px;
+  height: 500px;
+  overflow: scroll;
+}
+#searchList li {
+  padding-top: 0px;
+}
 #searchList li .searchListItem {
   position: relative;
   z-index: 3;
-  border: solid 1px #eee;
+  border: solid 1px F1F1F1;
   height: 60px;
   display: flex;
-  margin-top: 4px;
-  margin-bottom: 4px;
+  align-items: stretch;
+  margin-top: 2px;
+  margin-bottom: 2px;
   margin-right: 4px;
   margin-left: 4px;
   padding-top: 5px;
   padding-bottom: 5px;
   box-shadow: 1px 1px #CAC0C0;
-  background: #eee;
+  border-radius: 2px;
+  font-size: 0.7rem;
+}
+#searchList li .searchListItem button {
+  border: none;
+  background: none;
+  font-size: 0.7rem;
+  margin: 0 8px;
 }
 #searchList li .searchListItem:hover {
-  background: #B3DB13;
+  background: #DDDDDD;
 }
 #searchList li .searchListItem.js-trackPlaying {
-  background: #9CBCEC;
+  background: linear-gradient(90deg, white 10%, #dddddd 90%);
 }
 #searchList li .searchListItem img {
   padding-left: 5px;
@@ -150,6 +228,7 @@ ol, ul {
 #searchList li .searchListItem .trackAttribute {
   display: block;
   position: relative;
+  flex-basis: 80%;
 }
 #searchList li .searchListItem .trackAttribute .username, #searchList li .searchListItem .trackAttribute .title {
   padding-left: 10px;
@@ -157,27 +236,22 @@ ol, ul {
 }
 #searchList li .searchListItem .trackAttribute .username {
   padding-top: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #searchList li .searchListItem .trackAttribute .title {
   padding-top: 20px;
   text-decoration: none;
   color: black;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #searchList li .searchListItem #miniControlPlayer {
-  position: absolute;
-  right: 10px;
-  border: 0px;
-  height: 0x;
-  display: block;
+  flex-grow: 1;
+  flex-basis: 20%;
+  display: flex;
   align-items: stretch;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  margin-right: 0px;
-  margin-left: 0px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  box-shadow: 0px 0px;
-}
-#searchList li .searchListItem #miniControlPlayer button {
-  height: 60px;
+  justify-content: center;
 }

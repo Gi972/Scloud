@@ -155,14 +155,16 @@ class BuilderView
     miniplayer.id = "miniControlPlayer";         
     miniplayer.children.add(
                  new ButtonElement()
-               ..text = "Add"
+               //..text = "Add"
+               ..className = "icon-plus"
                ..id = id.toString()
                ..onClick.listen(_addPlaylist_onClick)
                );
     miniplayer.children.add(
                 _controller.miniControlPlay
-                 ..text = "pause"
+                 //..text = "pause"
                  ..id = "Play_$id"
+                 ..className = "icon-play2"
                  ..onClick.listen(_miniplayer_onClick)
                  );
     
@@ -192,11 +194,11 @@ class BuilderView
       AnchorElement currentElement = (e.currentTarget  as ButtonElement).parentNode.parentNode.childNodes[1].childNodes[1];
      
    SpanElement previousElement =  querySelector(".js-trackPlaying");
-   if(previousElement != null) {previousElement.classes.remove("js-trackPlaying");}
-     
-   window.console.log(previousElement);
-   
-      _controller.miniControlPlay.text = "pause";
+   if(previousElement != null) {previousElement.classes.remove("js-trackPlaying");   
+   (previousElement.childNodes[2].childNodes[1] as ButtonElement).classes.remove("icon-pause2"); 
+   (previousElement.childNodes[2].childNodes[1] as ButtonElement).classes.add("icon-play2");
+   }
+  
       _controller.loadFile(currentElement);
       ((e.currentTarget as ButtonElement).parentNode.parentNode as SpanElement).classes.add("js-trackPlaying");
       _controller.play();    

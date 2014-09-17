@@ -25,17 +25,61 @@ ol,ul {
   padding-left: 10px;
 }
 
+#playerBoard{
+  background:linear-gradient(90deg, #000000 -25%, #e74c3c 90%); /* W3C */
+}
+
 #playerControl{
   display: flex;
   align-items: center;
   justify-content: center;
+  
+  button{
+  border:none;
+  background: none;
+  margin-top:10px;
+  
+    &.icon-play, &.icon-pause,&.icon-backward,&.icon-forward{
+    padding-left:1;
+    padding-right:0;
+    margin-left:0;
+    margin-right:0;
+    color:#FFFFFF;
+    }
+  
+    &.icon-play, &.icon-pause{
+      font-size:2.5rem; 
+    }
+    &.icon-backward,&.icon-forward{
+    font-size:1.5rem;
+    }
+    &:focus{
+    outline:none;
+    }
+  }
+  
+  
 }
 
 #playerInfo{
-  display: flex;  
-  #playerArtist{ flex-grow:1;}
-  #playerTitle{flex-grow:1;}
-  #duration{flex-grow:1;}
+  display: flex;
+  
+    
+  #playerArtist{ 
+  flex-grow:1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;}
+  #playerTitle{flex-grow:2;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;}
+ #duration{
+ //flex-grow:1;
+ width:120px;
+white-space: nowrap;
+
+ }
 }
 
 
@@ -47,9 +91,9 @@ ol,ul {
 .playerBar{
   position:relative;
   
-  height: 30px;
+  height: 6px;
   width: 100%;
-  background-color: #eee;
+  background-color: #DDDDDD;
   
   .barLoad{
   position:absolute;
@@ -81,10 +125,10 @@ ol,ul {
 
 
 #playerInteraction{
-  margin-top: 15px;
   padding-top: 15px;
-  border-top: solid 1px #eee;
   position: relative;
+  background:#DDDDDD;
+  border-bottom: 1px solid;
 
 .panel{
   position: absolute;
@@ -94,29 +138,48 @@ ol,ul {
   margin-top: -6px;
   //left: calc(50% - 190px);
   padding-top: 28px;
-  border-top: 1px solid #E9EBED;
+
+  
+  #infoPlayer{
+  border-top: 1px solid #DFDFDF;
+  margin-top: 1px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  height: 115px;
+  text-align:center;
+  line-height:100px;
+  background: #EEEEEE;
+  }
   
 }
 
 h1{
   display: inline-block;
-  margin: 0 1px;
-  padding: 8px 12px;
-  border: 1px solid #E9EBED;
+  margin: 0 -2px;
+  padding: 8px 20px;
+  padding-bottom:11px;
+  //border: 1px solid #E9EBED;
+  border-left:1px solid #111111;
+  border-right:1px solid #111111;
   border-bottom: none;
-  border-radius: 5px 5px 0 0;
-  background: #FAFAFB;
+  border-radius: 1px 1px 0 0;
+  //background: #FAFAFB;
   font-weight: 500;
   font-size: 13px;
-  color: #1394BF;
+  color: #FF4136;
   cursor: pointer;
   //box-shadow: 1px 1px;
+  color: #FFFFFF;
 }
 
 h1.active {
   position: relative;
   z-index: 1;
   background: #fff;
+  color: #111111;
+  border: 1px solid #FFFFFF;
+  margin-bottom:-1px;
 }
 
 h1.active + .panel {
@@ -126,45 +189,86 @@ h1.active + .panel {
 
 #searchbar{
   display:flex;
+  height:30px;
 
   #searchSong{
-  flex-grow:9;
+    flex-grow:9;
+    border: none;
+    background: #eee;
+    border-bottom: 1px solid linear-gradient(90deg, black -25%, #e74c3c 95%);
+  
+  
+    &:focus{
+    outline:none;
+    }
   }
  
   #searchSongSubmit{
   flex-grow:1;
+  background: linear-gradient(90deg, black -25%, #e74c3c 95%);
+  color: white;
+  border:none;
+  border-radius:2px;
+  
+    &:focus{
+      outline:none;
+    }
   }
 }
 
 
 #searchList{
+  padding-top: 1px;
+  height: 500px;
+  overflow: scroll;
+  
+  ul{
+  //background:#473939;
+  //background: #FAFAFA;
+  //background: linear-gradient(20deg, black 10%, #e74c3c 90%);
+  }
+  
   li{
+  padding-top:0px;
   
   .searchListItem{
+  
+  button{
+    border:none;
+    background: none;
+    font-size: 0.7rem;
+    margin: 0 8px;
+  }
+  
   
   position:relative;
   z-index:3;
   
-  border:solid 1px #eee;
+  border:solid 1px F1F1F1;
   height: 60px;
   display : flex;
-  //align-items:stretch;
-  margin-top: 4px;
-  margin-bottom: 4px;
+  align-items:stretch;
+  margin-top: 2px;
+  margin-bottom: 2px;
   margin-right:4px;
   margin-left:4px;
   padding-top:5px;
   padding-bottom:5px;
   box-shadow: 1px 1px #CAC0C0;
-  background:#eee;
+  //background:#FFFFFF;
+  //background:#6F8F91;
+  border-radius:2px;
+  font-size: 0.7rem;
   //background:linear-gradient(90deg, #1A2980 10%, #26D0CE 90%);
+  //background: linear-gradient(90deg, black 10%, #e74c3c 90%);
   
   &:hover{
-  background:#B3DB13;
+  //background: linear-gradient(90deg, #00d2ff 10%, #3a7bd5 90%); /* W3C */
+  background: #DDDDDD;
   } 
   
   &.js-trackPlaying{
-  background: #9CBCEC;
+  background: linear-gradient(90deg, #FFFFFF 10%, #DDDDDD 90%);
   }
   
   img{
@@ -175,6 +279,8 @@ h1.active + .panel {
   .trackAttribute{
   display: block;
   position: relative;
+  flex-basis:80%;
+  
   
     .username,.title{
     padding-left:10px;
@@ -183,36 +289,27 @@ h1.active + .panel {
   
     .username{
       padding-top:5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     
     .title{
       padding-top:20px;
       text-decoration:none; 
       color:$black;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
  
    #miniControlPlayer{
- 
-    position: absolute;
-    right:10px;
-    border:  0px;
-    height: 0x;
-    display: block;
+    flex-grow:1;
+    flex-basis:20%;
+    display: flex;
     align-items: stretch;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    margin-right: 0px;
-    margin-left: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    box-shadow: 0px 0px;
-    
-    
-    button{
-    height:60px;
-    
-    }
+    justify-content: center;  
    }
    
   }
