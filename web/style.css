@@ -22,7 +22,7 @@ ol, ul {
 }
 
 #playerBoard {
-  background: linear-gradient(90deg, black -25%, #e74c3c 90%);
+  background: linear-gradient(90deg, #403b4a 10%, #e7e9bb 90%);
   /* W3C */
 }
 
@@ -42,6 +42,9 @@ ol, ul {
   margin-left: 0;
   margin-right: 0;
   color: #FFFFFF;
+}
+#playerControl button.icon-play:hover, #playerControl button.icon-pause:hover, #playerControl button.icon-backward:hover, #playerControl button.icon-forward:hover {
+  color: black;
 }
 #playerControl button.icon-play, #playerControl button.icon-pause {
   font-size: 2.5rem;
@@ -111,7 +114,7 @@ ol, ul {
 #playerInteraction {
   padding-top: 15px;
   position: relative;
-  background: #DDDDDD;
+  background: linear-gradient(151deg, white 10%, #979797 90%);
   border-bottom: 1px solid;
 }
 #playerInteraction .panel {
@@ -120,7 +123,7 @@ ol, ul {
   display: none;
   width: 100%;
   margin-top: -6px;
-  padding-top: 28px;
+  padding-top: 8px;
 }
 #playerInteraction .panel #infoPlayer {
   border-top: 1px solid #DFDFDF;
@@ -128,10 +131,10 @@ ol, ul {
   width: 100%;
   position: fixed;
   bottom: 0;
-  height: 115px;
+  height: 128px;
   text-align: center;
   line-height: 100px;
-  background: #EEEEEE;
+  background: linear-gradient(151deg, white 10%, #979797 90%);
 }
 #playerInteraction h1 {
   display: inline-block;
@@ -146,7 +149,7 @@ ol, ul {
   font-size: 13px;
   color: #FF4136;
   cursor: pointer;
-  color: #FFFFFF;
+  color: #979393;
 }
 #playerInteraction h1.active {
   position: relative;
@@ -175,7 +178,7 @@ ol, ul {
 }
 #searchbar #searchSongSubmit {
   flex-grow: 1;
-  background: linear-gradient(90deg, black -25%, #e74c3c 95%);
+  background: #c0b7b7;
   color: white;
   border: none;
   border-radius: 2px;
@@ -186,7 +189,7 @@ ol, ul {
 
 #searchList {
   padding-top: 1px;
-  height: 500px;
+  height: 505px;
   overflow: scroll;
 }
 #searchList li {
@@ -208,6 +211,7 @@ ol, ul {
   box-shadow: 1px 1px #CAC0C0;
   border-radius: 2px;
   font-size: 0.7rem;
+  background: linear-gradient(90deg, white 10%, #dddddd 90%);
 }
 #searchList li .searchListItem button {
   border: none;
@@ -219,7 +223,7 @@ ol, ul {
   background: #DDDDDD;
 }
 #searchList li .searchListItem.js-trackPlaying {
-  background: linear-gradient(90deg, white 10%, #dddddd 90%);
+  border-right: 8px solid #AAA;
 }
 #searchList li .searchListItem img {
   padding-left: 5px;
