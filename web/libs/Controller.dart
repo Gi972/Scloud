@@ -68,11 +68,6 @@ BuilderView builderView;
     }           
    }
   
-  void buildNexTrackList(e){
-    e.preventDefault();
-    AnchorElement trackLink = (e.currentTarget as AnchorElement);   
-    builderView.buildNexTrackList(trackLink, this); 
-  }
    
   void play(){       
    
@@ -119,7 +114,7 @@ BuilderView builderView;
          
      var ta =  soundcloudAPI.getTrack(searchValues).then((e){
      //var tt = soundcloudAPI.Tracks.toString(); 
-     builderView.buildSearchList(searchList, soundcloudAPI.Tracks, this,playlistULement);    
+     builderView.searchListView.buildSearchList(searchList, soundcloudAPI.Tracks, this,playlistULement);    
      }, onError: (e){});
     
   }

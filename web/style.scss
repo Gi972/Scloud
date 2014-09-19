@@ -26,7 +26,8 @@ ol,ul {
 }
 
 #playerBoard{
-  background:linear-gradient(90deg, #000000 -25%, #e74c3c 90%); /* W3C */
+  //background:linear-gradient(90deg, #000000 -25%, #e74c3c 90%); /* W3C */
+  background:linear-gradient(90deg, #403B4A 10%, #E7E9BB 90%); /* W3C */     
 }
 
 #playerControl{
@@ -45,7 +46,12 @@ ol,ul {
     margin-left:0;
     margin-right:0;
     color:#FFFFFF;
+    &:hover{
+    color:black;
     }
+    }
+    
+    
   
     &.icon-play, &.icon-pause{
       font-size:2.5rem; 
@@ -127,7 +133,8 @@ white-space: nowrap;
 #playerInteraction{
   padding-top: 15px;
   position: relative;
-  background:#DDDDDD;
+  //background:#DDDDDD;
+  background: linear-gradient(151deg, white 10%, #979797 90%);
   border-bottom: 1px solid;
 
 .panel{
@@ -137,7 +144,7 @@ white-space: nowrap;
    width: 100%;
   margin-top: -6px;
   //left: calc(50% - 190px);
-  padding-top: 28px;
+  padding-top: 8px;
 
   
   #infoPlayer{
@@ -146,10 +153,11 @@ white-space: nowrap;
   width: 100%;
   position: fixed;
   bottom: 0;
-  height: 115px;
+  height: 128px;
   text-align:center;
   line-height:100px;
-  background: #EEEEEE;
+  //background: #EEEEEE;
+  background: linear-gradient(151deg, white 10%, #979797 90%);
   }
   
 }
@@ -170,7 +178,8 @@ h1{
   color: #FF4136;
   cursor: pointer;
   //box-shadow: 1px 1px;
-  color: #FFFFFF;
+  //color: #FFFFFF;
+  color: #979393;
 }
 
 h1.active {
@@ -205,7 +214,8 @@ h1.active + .panel {
  
   #searchSongSubmit{
   flex-grow:1;
-  background: linear-gradient(90deg, black -25%, #e74c3c 95%);
+  //background: linear-gradient(90deg, black -25%, #e74c3c 95%);
+  background: rgb(192, 183, 183);
   color: white;
   border:none;
   border-radius:2px;
@@ -219,7 +229,7 @@ h1.active + .panel {
 
 #searchList{
   padding-top: 1px;
-  height: 500px;
+  height: 505px;
   overflow: scroll;
   
   ul{
@@ -259,6 +269,7 @@ h1.active + .panel {
   //background:#6F8F91;
   border-radius:2px;
   font-size: 0.7rem;
+  background: linear-gradient(90deg, white 10%, #dddddd 90%);
   //background:linear-gradient(90deg, #1A2980 10%, #26D0CE 90%);
   //background: linear-gradient(90deg, black 10%, #e74c3c 90%);
   
@@ -268,7 +279,8 @@ h1.active + .panel {
   } 
   
   &.js-trackPlaying{
-  background: linear-gradient(90deg, #FFFFFF 10%, #DDDDDD 90%);
+  //background: linear-gradient(90deg, #FFFFFF 10%, #DDDDDD 90%);
+  border-right: 8px solid #AAA;
   }
   
   img{
