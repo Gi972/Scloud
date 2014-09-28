@@ -34,7 +34,6 @@ class SoundCloud
   
   void decodeJson(String result){ 
     Tracks = JSON.decode(result);
-    //print(Tracks);
   }
   
   

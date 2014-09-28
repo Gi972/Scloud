@@ -3,6 +3,7 @@ library Controller;
 import '../libs/AudioPlayer.dart';
 import '../libs/SoundCloud.dart';
 import '../libs/BuilderView.dart';
+import '../libs/models/track.dart';
 import 'dart:html';
 
 class Controller{
@@ -24,6 +25,7 @@ HeadingElement playerTitle;
 HeadingElement playerArtist;
 InputElement playerFiles;
 InputElement searchSong;
+ImageElement OnAirTabAvatarTrack;
 LIElement activeClass;
 ProgressElement  PlayerProgress;
 ProgressElement  PlayerLoaded;
@@ -35,19 +37,24 @@ UListElement nextTrackListULement;
 SpanElement barLoad;
 SpanElement barProgress;
 SpanElement barSeek;
- 
+SpanElement infoTitle;
+SpanElement infoArtist;
+SpanElement infoDescription;
 
-  
+
 AudioPlayer player; 
 SoundCloud soundcloudAPI;
 BuilderView builderView;
+Track currentTrack;
+List <Track> tracks;
   
   init(){
    player = new AudioPlayer();
    soundcloudAPI =  new SoundCloud();
    builderView =  new BuilderView(this);
    nextTrack.text = "no Next Track";  
-   
+   tracks = new List<Track>();
+
    var d = window.console ;
    
   }
@@ -60,10 +67,7 @@ BuilderView builderView;
 
    miniControlPlay = querySelector("#miniControlPlayer  #Play_$subId");
    miniControlPlayListPlay = querySelector("#playlistULement #Play_IDTRACK_$subId");
-   print("playlis");
     window.console.log(miniControlPlayListPlay);
-
-
 
    if(player.mediaElement.title== ''){
       player.load(trackLink);
@@ -96,6 +100,7 @@ BuilderView builderView;
                                              miniControlPlayListPlay.classes.add("icon-pause2");
                                              miniControlPlay.classes.remove("icon-play2");
                                            }
+
                                            
                                          }
                                          else{
@@ -116,7 +121,11 @@ BuilderView builderView;
                                          }
                                  
                               player.mediaElement.onProgress.listen(_mediaElement_onProgress);
-                              player.mediaElement.onTimeUpdate.listen(_mediaElement_timeUpdate);                                                 
+                              player.mediaElement.onTimeUpdate.listen(_mediaElement_timeUpdate);
+
+
+                            print(player.mediaElement.id.substring(12));
+                            builderView.onAirView.getInfoTrack(player.mediaElement.id.substring(12));
     }
   }
   

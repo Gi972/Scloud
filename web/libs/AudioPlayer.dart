@@ -2,12 +2,14 @@ library AudioPlayer;
 
 import 'dart:html';
 import 'dart:web_audio';
+import '../libs/models/track.dart';
 
 class AudioPlayer {
 AudioContext audiocontext;
 AudioElement mediaElement;
 MediaElementAudioSourceNode _source;
 List<AudioElement> mediaElements;
+Track currentTrack;
 
 
 var  _startOffset = 0;
@@ -22,6 +24,7 @@ var  _startTime = 0;
   void load(AnchorElement track){
    
       createMedia(track);
+
       if(_source == null){
         _source = audiocontext.createMediaElementSource(mediaElement);
          _source.connectNode(audiocontext.destination);
@@ -58,7 +61,8 @@ var  _startTime = 0;
     mediaElement.src= urlRequest;
     mediaElement.title = track.title;  
     mediaElement.dataset = {"artist":"${track.dataset["artist"]}"};
-    mediaElement.id = "Song${track.id}";   
+    mediaElement.id = "Song${track.id}";
+
   }
     
   void previous(){}

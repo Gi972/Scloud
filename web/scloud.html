@@ -7,7 +7,7 @@
     <title>Scloud</title>
 
     <script async type="application/dart" src="scloud.dart"></script>
-    <script async src="packages/browser/dart.js"></script>
+    <!--<script async src="packages/browser/dart.js"></script>-->
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="Content/icomoon/style.css"> 
@@ -40,7 +40,7 @@
     </div>
    
     <div id="playerControl">
-    <button id="playerReload" style="display:none;"">reload</button>
+    <button id="playerReload" style="display:none;">reload</button>
       <button id="playerLoad" style="display:none;">LoadSong</button>
       <button id="playerPrevious" class="icon-backward"></button>
      <button id="playerPlay" class="icon-play"></button>
@@ -57,7 +57,7 @@
       <h1 class="active">SearchList</h1>
         <div id="SearchListTab"  class="panel">
              <div class="content">
-             <div id="searchbar"><input type="text" value="pompis" id="searchSong" /><button id="searchSongSubmit">Rechercher</button></div>
+             <div id="searchbar"><input type="text" value="dj joupi" id="searchSong" /><button id="searchSongSubmit">Rechercher</button></div>
               <div id="searchList">Make a search...</div>         
              <div id="infoPlayer">Clear</div>            
             </div>
@@ -82,8 +82,12 @@
   <h1>onAir</h1>
       <div id="OnAirTab" class="panel">
 
-          <img src="" alt="test"/>
-          <div id="info">info</div>
+          <img class="OnAirTab-avatarTrack" src="" alt="test"/>
+          <div class="info">
+              <span class="info-title"></span>
+              <span class="info-artist"></span>
+              <span class="info-description"></span>
+          </div>
           <div id="option">options</div>
           <ul>
               <li>comment</li>

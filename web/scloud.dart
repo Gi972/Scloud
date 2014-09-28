@@ -31,7 +31,11 @@ void main() {
     control.barLoad = querySelector(".barLoad");
     control.barProgress = querySelector(".barProgress");
     control.barSeek = querySelector(".barSeek");
-    
+    control.infoTitle = querySelector("#OnAirTab .info-title");
+    control.OnAirTabAvatarTrack = querySelector("#OnAirTab .OnAirTab-avatarTrack");
+    control.infoTitle = querySelector("#OnAirTab .info-title");
+    control.infoArtist = querySelector("#OnAirTab .info-artist");
+    control.infoDescription = querySelector("#OnAirTab .info-description");
  
   control.init();
  
