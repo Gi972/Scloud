@@ -7,6 +7,8 @@ import 'dart:html';
 
 class Controller{
     
+ButtonElement miniControlPlay;
+ButtonElement miniControlPlayListPlay;
 ButtonElement playerPrevious;
 ButtonElement playerPlay;
 ButtonElement playerNext;
@@ -28,14 +30,12 @@ ProgressElement  PlayerLoaded;
 SpanElement playerDuration;
 SpanElement PlayerCurrentime;
 SpanElement nextTrack;
-
 UListElement playlistULement;
 UListElement nextTrackListULement;
 SpanElement barLoad;
 SpanElement barProgress;
 SpanElement barSeek;
  
-ButtonElement miniControlPlay;
 
   
 AudioPlayer player; 
@@ -56,8 +56,15 @@ BuilderView builderView;
          
     AnchorElement trackLink = element;
     var subId = element.id.substring(8);
-   miniControlPlay = querySelector("#miniControlPlayer  #Play_$subId"); 
-        
+    print(subId);
+
+   miniControlPlay = querySelector("#miniControlPlayer  #Play_$subId");
+   miniControlPlayListPlay = querySelector("#playlistULement #Play_IDTRACK_$subId");
+   print("playlis");
+    window.console.log(miniControlPlayListPlay);
+
+
+
    if(player.mediaElement.title== ''){
       player.load(trackLink);
    }
@@ -84,7 +91,11 @@ BuilderView builderView;
                                            playerPlay.classes.remove("icon-play");
                                            miniControlPlay.classes.add("icon-pause2");
                                            miniControlPlay.classes.remove("icon-play2");
-                                          
+
+                                           if(miniControlPlayListPlay != null) {
+                                             miniControlPlayListPlay.classes.add("icon-pause2");
+                                             miniControlPlay.classes.remove("icon-play2");
+                                           }
                                            
                                          }
                                          else{
@@ -95,8 +106,12 @@ BuilderView builderView;
                                            playerPlay.classes.remove("icon-pause");                                
                                            miniControlPlay.classes.add("icon-play2");
                                            miniControlPlay.classes.remove("icon-pause2");
-                                         
-                                          
+
+                                           if(miniControlPlayListPlay != null) {
+                                             miniControlPlayListPlay.classes.add("icon-play2");
+                                             miniControlPlayListPlay.classes.remove("icon-pause2");
+
+                                           }
 
                                          }
                                  
@@ -114,7 +129,7 @@ BuilderView builderView;
          
      var ta =  soundcloudAPI.getTrack(searchValues).then((e){
      //var tt = soundcloudAPI.Tracks.toString(); 
-     builderView.searchListView.buildSearchList(searchList, soundcloudAPI.Tracks, this,playlistULement);    
+     builderView.searchListView.buildSearchList(searchList, soundcloudAPI.Tracks, this, playlistULement);
      }, onError: (e){});
     
   }
@@ -125,9 +140,15 @@ BuilderView builderView;
     
   }
   
-  //ClearPlayList(e,UListElement element){
-  //  element.nodes.clear();
-//  }
+ void clearPlayList(e){
+   playlistULement.nodes.clear();
+   List buttonDisabled = querySelectorAll("#miniControlPlayer button:disabled");
+   buttonDisabled.forEach((e){
+     (e as ButtonElement).disabled= false;
+   });
+
+   window.console.log(buttonDisabled);
+  }
   
   void _mediaElement_timeUpdate(Event e){
     

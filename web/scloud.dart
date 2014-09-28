@@ -38,6 +38,7 @@ void main() {
   control.playerPlay.onClick.listen(controlPlayerPlay_onClick);
   control.searchSongSubmit.onClick.listen(controlSearchSongSubmit_onClick);
   control.barSeek.onMouseUp.listen(controlplayerProgress_OnMouseUp);
+ control.ClearPlayList.onClick.listen(controlClearPlaylist_onClick);
   
   querySelectorAll("h1").onClick.listen(onclickTab); 
 }
@@ -70,4 +71,9 @@ void onclickTab(Event e){
  }
  window.console.log(h1elmt);
  
+}
+
+
+void controlClearPlaylist_onClick(Event e){
+ control.clearPlayList(e);
 }
